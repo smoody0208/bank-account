@@ -14,10 +14,11 @@ BankAccount.prototype.withdraw = function(amount) {
 
 // User Interface -----
 
-let totalAccount;
+
 
 // user interface logic
 $(document).ready(function() {
+  let totalAccount;
   $("form#formOne").submit(function(event) { 
     event.preventDefault();
     const accountName = $("input#name").val();
@@ -25,7 +26,8 @@ $(document).ready(function() {
     totalAccount = new BankAccount(accountName, initialDeposit)
     console.log(accountName);
     console.log(initialDeposit);
-    $("#balance").text(totalAccount.initialDeposit)
+    $("#balance").text(initialDeposit)
+    
   })
   $("form#withdraw-form").submit(function(event) {
     event.preventDefault();
@@ -35,6 +37,7 @@ $(document).ready(function() {
       $("#balance").text(totalAccount.initialDeposit)
     })
       console.log(withdraw); 
+
   $("form#deposit-form").submit(function(event) {
     event.preventDefault();
       const amount = parseInt($("input#deposit").val());
