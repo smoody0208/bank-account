@@ -8,27 +8,38 @@ BankAccount.prototype.deposit = function(amount) {
   this.initialDeposit += amount;
 }
 
-BankAccount.prototype.withdrawal = function(amount) {
+BankAccount.prototype.withdraw = function(amount) {
   this.initialDeposit -= amount;
 }
 
 // User Interface -----
 
-
+let totalAccount;
 
 // user interface logic
 $(document).ready(function() {
-  $("form#formOne").submit(function(event) {
+  $("form#formOne").submit(function(event) { 
     event.preventDefault();
     const accountName = $("input#name").val();
-    const initialDeposit = $("input#initial-desposit").val();
+    const initialDeposit = parseInt($("input#initial-desposit").val());
+    totalAccount = new BankAccount(accountName, initialDeposit)
+    console.log(accountName);
+    console.log(initialDeposit);
+    $("#balance").text(totalAccount.initialDeposit)
   })
-  $("form#formDeposit").submit(function(event) {
+  $("form#withdraw-form").submit(function(event) {
     event.preventDefault();
-      const deposit = $("input#deposit")
+      const amount = parseInt($("input#withdraw").val());
+      totalAccount.withdraw(amount)
+      console.log(totalAccount);
+      $("#balance").text(totalAccount.initialDeposit)
+    })
+      console.log(withdraw); 
+  $("form#deposit-form").submit(function(event) {
+    event.preventDefault();
+      const amount = parseInt($("input#deposit").val());
+      totalAccount.deposit(amount)  
+      console.log(deposit); 
+      $("#balance").text(totalAccount.initialDeposit)
   })    
-  $("form#formWithdrawal").submit(function(event) {
-    event.preventDefault();
-      const withdrawal = $("input#withdrawal")
-  })  
 });
